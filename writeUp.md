@@ -1,0 +1,7 @@
+# Queue Write Up
+
+The problem is that the elevator is going to the floor destination of the next passenger in the cue, instead of just incrementing floors all the way up and all the way down and letting off passengers where applicable. The elapsed floor should only ever be, worst case scenario, 29 assuming somebody on the second floor wants to go to the first floor, and is unfortunate enough to catch a car that goes all the way up to 15 before coming back down to 1. But in this case, we have passengers lingering in the car for 140+ floors, owed to the car only traveling to the destination of the next person in line and only letting off that one person. 
+
+A half-hearted improvement would be to iterate through all of the people at each floor and let each of them off if the destination matches, all while on the way to the first person's floor.
+
+A better improvement would be to do the previous suggestion, but also adjust the destination floor for the elevator as more passengers get on. Say if the car is at floor 8, heading toward floor 11, and at floor 10 somebody gets on heading to floor 14, then the destination floor of the car is now 14. Once it either reaches it's highest requested floor or 15, it goes back down in a similar fashion, either reaching the lowest requested floor or the bottom floor. 
